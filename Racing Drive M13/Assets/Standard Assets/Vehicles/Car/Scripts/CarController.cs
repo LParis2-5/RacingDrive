@@ -45,8 +45,10 @@ namespace UnityStandardAssets.Vehicles.Car
         private float m_GearFactor;
         private float m_OldRotation;
         private float m_CurrentTorque;
-        private Rigidbody m_Rigidbody;
+        public Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
+        public float v_initialDrag;
+        public float v_initialMass;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
@@ -70,6 +72,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+            v_initialDrag = m_Rigidbody.drag;
+            v_initialMass = m_Rigidbody.mass;
         }
 
 
@@ -88,6 +92,8 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 m_GearNum++;
             }
+
+            //Debug.Log("F = " + f + "Up a gear =" + upgearlimit);
         }
 
 
@@ -167,6 +173,9 @@ namespace UnityStandardAssets.Vehicles.Car
             CalculateRevs();
             GearChanging();
 
+            //OffRoad();
+
+
             AddDownForce();
             CheckForWheelSpin();
             TractionControl();
@@ -192,6 +201,36 @@ namespace UnityStandardAssets.Vehicles.Car
                     break;
             }
         }
+
+
+        void OffRoad ()
+        {
+            Ray rayLeft = new Ray();
+            RaycastHit hit;
+            Transform raystart = GameObject.Find("Collider_Bottom").transform;
+
+            rayLeft.origin = raystart.position;
+            rayLeft.direction = Vector3.down;
+
+            if (Physics.Raycast(rayLeft, out hit, 100f))
+            {
+
+                if (hit.collider.gameObject.name == "Terrain")
+                {
+                    m_Rigidbody.drag = v_initialDrag * 10;
+                }
+                
+                else
+                {
+                    m_Rigidbody.drag = v_initialDrag;
+
+                }
+
+            }
+
+        }
+
+      
 
 
         private void ApplyDrive(float accel, float footbrake)
@@ -351,6 +390,8 @@ namespace UnityStandardAssets.Vehicles.Car
                 }
             }
         }
+
+
 
 
         private bool AnySkidSoundPlaying()
