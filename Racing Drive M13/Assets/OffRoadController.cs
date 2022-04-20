@@ -38,7 +38,11 @@ namespace UnityStandardAssets.Vehicles.Car
 
             else if (sum < 0)
             {
-                bootsAmount++;
+                if(bootsAmount < 5000)
+                {
+                   bootsAmount++;
+
+                }
             }
 
             else

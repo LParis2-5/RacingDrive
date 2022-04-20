@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Zukuba.unity
+    guid: 6e0ea626c11827645b69c0ed9e83c2b8
   m_configObjects: {}
