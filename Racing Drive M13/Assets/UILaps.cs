@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UILaps : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,8 @@ public class UILaps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         
     }
 }

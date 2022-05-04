@@ -52,14 +52,36 @@ namespace UnityStandardAssets.Vehicles.Car
 
             }
 
-            if (Input.GetKey(KeyCode.B) && bootsAmount > 0)
+            if (Input.GetJoystickNames().Length == 0)
             {
-                bootsAmount--;
-                bootsAmount--;
-               
+                //Debug.Log("PC");
+                if (Input.GetKey(KeyCode.B) && bootsAmount > 0)
+                {
+                    bootsAmount--;
+                    bootsAmount--;
 
-                m_Car.m_Rigidbody.mass = m_Car.v_initialMass * 2; 
+
+                    m_Car.m_Rigidbody.mass = m_Car.v_initialMass * 2;
+                }
             }
+            else
+            {
+                //Debug.Log("Controller");
+                if (Input.GetAxis("Fire1") == 1 && bootsAmount > 0)
+                {
+
+                    bootsAmount--;
+                    bootsAmount--;
+
+
+                    m_Car.m_Rigidbody.mass = m_Car.v_initialMass * 2;
+
+                }
+
+
+            }
+
+
 
             //Debug.Log(bootsAmount);
 

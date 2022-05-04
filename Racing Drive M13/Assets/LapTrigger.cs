@@ -5,7 +5,8 @@ using UnityEngine;
 public class LapTrigger : MonoBehaviour
 {
 
-    [SerializeField] public static int triggerValue;
+    //[SerializeField] public static int triggerValue;
+    LapController lapped;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,10 @@ public class LapTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        triggerValue++;
-        Debug.Log(triggerValue);
+        //triggerValue++;
+        //Debug.Log(triggerValue);
+        lapped = other.gameObject.transform.parent.GetComponent<LapController>();
+        lapped.triggerValue++;
 
     }
 

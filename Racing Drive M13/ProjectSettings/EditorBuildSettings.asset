@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Zukuba.unity
     guid: 6e0ea626c11827645b69c0ed9e83c2b8
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: a7a768795a6e8f14d913510581764f66
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: eb03996273da5f244a6f61effa03cbde
+  - enabled: 1
+    path: Assets/Scenes/ZukubaSolo.unity
+    guid: 23970a3bb357fbd4fb4187d72748c22c
   m_configObjects: {}
